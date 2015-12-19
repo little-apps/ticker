@@ -29,7 +29,8 @@
       speed:4000,
 	  effect:'slide',
 	  run_once:false,
-	  random:false
+	  random:false,
+	  pauseHover:true
     };
     
     var options = $.extend(defaults, options);
@@ -41,9 +42,8 @@
       var count = list.length - 1;
 
       list.not(':first').hide();
-      
-      var interval = setInterval(function(){
-        
+	  
+	  var tick = function(){
         list = obj.children();
         list.not(':first').hide();
         
@@ -74,7 +74,20 @@
 			clearInterval(interval);
 		}
 		
-      }, options.speed)
+    };
+      
+      var interval = setInterval(tick, options.speed);
+	  
+	  if (options.pauseHover) {
+		  obj.hover(
+			function() {
+				clearInterval(interval);
+			},
+			function() {
+				interval = setInterval(tick, options.speed);
+			}
+		  );
+	  }
     });
   };
 })(jQuery);
