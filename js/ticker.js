@@ -42,7 +42,7 @@
 			var $count = $list.length - 1;
 
 			$list.not(':first').hide();
-	  
+
 			var $tick = function(){
 				$list = $obj.children();
 				$list.not(':first').hide();

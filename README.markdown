@@ -36,6 +36,9 @@
 ###speed
 * integer (milliseconds)
 
+###pauseHover
+* boolean
+
 ##License
 
 Copyright (C) 2011 by Alex Fish
