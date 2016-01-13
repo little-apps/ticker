@@ -28,10 +28,16 @@
 		var $defaults = {
 			speed:4000,
 			effect:'slide',
+<<<<<<< HEAD
 			runOnce:false,
 			random:false,
 			pauseHover:true,
 			autoRun:true
+=======
+			run_once:false,
+			random:false,
+			pauseHover:true
+>>>>>>> 09851eed72ac1d8e86c163d543440c05ba731797
 		};
     
 		var $options = $.extend($defaults, $options);
@@ -43,7 +49,11 @@
 			var $count = $list.length - 1;
 
 			$list.not(':first').hide();
+<<<<<<< HEAD
 	  
+=======
+
+>>>>>>> 09851eed72ac1d8e86c163d543440c05ba731797
 			var $tick = function(){
 				$list = $obj.children();
 				$list.not(':first').hide();
@@ -68,12 +78,18 @@
 
 				$count--;
 
+<<<<<<< HEAD
 				if ($count == 0 && $options.runOnce)
 					clearInterval($interval);
 			};
 			
 			if ($options.autoRun)
 				$tick();
+=======
+				if ($count == 0 && $options.run_once)
+					clearInterval($interval);
+			};
+>>>>>>> 09851eed72ac1d8e86c163d543440c05ba731797
       
 			var $interval = setInterval($tick, $options.speed);
 	  
