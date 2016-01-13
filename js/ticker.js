@@ -23,58 +23,62 @@
 */
 
 (function($){
-  $.fn.list_ticker = function(options){
+	$.fn.list_ticker = function($options){
     
-    var defaults = {
-      speed:4000,
-	  effect:'slide',
-	  run_once:false,
-	  random:false
-    };
+		var $defaults = {
+			speed:4000,
+			effect:'slide',
+			run_once:false,
+			random:false,
+			pauseHover:true,
+			autoRun:true
+		};
     
-    var options = $.extend(defaults, options);
+		var $options = $.extend($defaults, $options);
     
-    return this.each(function(){
+		return this.each(function() {
       
-      var obj = $(this);
-      var list = obj.children();
-      var count = list.length - 1;
+			var $obj = $(this);
+			var $list = $obj.children();
+			var $count = $list.length - 1;
 
-      list.not(':first').hide();
-      
-      var interval = setInterval(function(){
-        
-        list = obj.children();
-        list.not(':first').hide();
-        
-        var first_li = list.eq(0)
-		var second_li = options.random ? list.eq(Math.floor(Math.random()*list.length)) : list.eq(1)
-		
-		if(first_li.get(0) === second_li.get(0) && options.random){
-			second_li = list.eq(Math.floor(Math.random()*list.length));
-		}
-	
-		if(options.effect == 'slide'){
-			first_li.slideUp();
-			second_li.slideDown(function(){
-				first_li.remove().appendTo(obj);
+			$list.not(':first').hide();
+	  
+			var $tick = function(){
+				$list = $obj.children();
+				$list.not(':first').hide();
 				
-			});
-		} else if(options.effect == 'fade'){
-			first_li.fadeOut(function(){
-				obj.css('height',second_li.height());
-				second_li.fadeIn();
-				first_li.remove().appendTo(obj);
-			});
-		}
+				var $first_li = $list.eq(0);
+				var $second_li = $options.random ? $list.eq(Math.floor(Math.random()*$list.length)) : $list.eq(1);
 		
-		count--;
-		
-		if(count == 0 && options.run_once){
-			clearInterval(interval);
-		}
-		
-      }, options.speed)
-    });
-  };
+				if ($first_li.get(0) === $second_li.get(0) && $options.random) {
+					$second_li = $list.eq(Math.floor(Math.random()*$list.length));
+				}
+	
+				if ($options.effect == 'slide') {
+					$first_li.slideUp();
+					$second_li.slideDown(function(){ $first_li.remove().appendTo($obj); });
+				} else if($options.effect == 'fade') {
+					$first_li.fadeOut(function() {
+						$obj.css('height',$second_li.height());
+						$second_li.fadeIn();
+						$first_li.remove().appendTo($obj);
+					});
+				}
+
+				$count--;
+
+				if ($count == 0 && $options.run_once)
+					clearInterval($interval);
+			};
+			
+			if ($options.autoRun)
+				$tick();
+      
+			var $interval = setInterval($tick, $options.speed);
+	  
+			if ($options.pauseHover)
+				$obj.hover(function() { clearInterval($interval); }, function() { $interval = setInterval($tick, $options.speed); } );
+		});
+	};
 })(jQuery);
