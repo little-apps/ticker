@@ -12,11 +12,14 @@
 
 ### JavaScript
 
-	$(document).ready(function(){
+	jQuery(document).ready(function($){
 		$('#ticker').list_ticker({
-			speed:2000,
-	        effect:'fade',
-	        run_once:true
+			speed:4000,
+			effect:'slide',
+			runOnce:false,
+			random:false,
+			pauseHover:true,
+			autoRun:true
 		})
 	})
 
@@ -27,7 +30,7 @@
 * fade
 * slide
 
-###run_once
+###runOnce
 * boolean
 
 ###random
@@ -35,6 +38,12 @@
 
 ###speed
 * integer (milliseconds)
+
+###autoRun
+* boolean
+
+###pauseHover
+* boolean
 
 ##License
 
