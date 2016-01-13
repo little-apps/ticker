@@ -28,7 +28,7 @@
 		var $defaults = {
 			speed:4000,
 			effect:'slide',
-			run_once:false,
+			runOnce:false,
 			random:false,
 			pauseHover:true,
 			autoRun:true
@@ -68,7 +68,7 @@
 
 				$count--;
 
-				if ($count == 0 && $options.run_once)
+				if ($count == 0 && $options.runOnce)
 					clearInterval($interval);
 			};
 			
