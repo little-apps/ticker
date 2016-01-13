@@ -39,12 +39,9 @@
 ###speed
 * integer (milliseconds)
 
-<<<<<<< HEAD
 ###autoRun
 * boolean
 
-=======
->>>>>>> 09851eed72ac1d8e86c163d543440c05ba731797
 ###pauseHover
 * boolean
 
